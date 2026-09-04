@@ -1,11 +1,36 @@
 <html>
     <head>
-
+        <title> js calc</title>
     </head>
 
     <body>
         <script>
-            
+            let a1 = Number(window.prompt("MASUKKAN ANGKA PERTAMA : "));
+            let b1 = Number(window.prompt("MASUKKAN ANGKA KEDUA   : "));
+            let operator = window.prompt("MASUKKAN OPERATOR : (+,-,*,/)");
+
+            if (operator == '+') {
+                let hasil = a1+b1;
+                window.alert("hasil : "+hasil);
+
+            }
+            if (operator == '-') {
+                let hasil = a1-b1;
+                window.alert("hasil : "+hasil);
+
+            }
+            if (operator == '*') {
+                let hasil = a1*b1
+                window.alert("hasil : "+hasil);
+
+            }
+            if (operator == '/') {
+                let hasil = a1/b1;
+                window.alert("hasil : "+hasil);
+
+            }
+
+
         </script>
     </body>
 </html>
