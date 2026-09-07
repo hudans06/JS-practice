@@ -1,33 +1,66 @@
 <!DOCTYPE html>
 <head>
     <title> to do list </title>
-    <style>
-        .addBtn {
-        padding: 10px;
-        width: 25%;
-        background: #d9d9d9;
-        color: #555;
-        float: left;
-        text-align: center;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
-        border-radius: 0;
-}
-    </style>
 
 </head>
 <body>
     <div id="myDIV" class="header">
         <h2>To Do List</h2>
-        <input type="text" id="myInput" placeholder="Tulis Tugas... ">
-        <span onclick="newElement()" class="addBtn">Tambah</span>
+        <input type="text" id="task" placeholder="Tulis Tugas... ">
+        <button onclick="addTask()">Tambah</button>
     </div>
-
-    <ul id="myUL">
-        <li>Mengerjakan latihan 1</li>
-        <li>Membuat laporan</li>
+    
+    <ul id="list">
     </ul>
+
+    <script>
+        let tasks = [];
+
+        // Function to Load tasks
+        function loadTasks() {
+            let saved = localStorage.getItem("tasks");
+            if (saved !== null) {
+                // Jika ada data di local storage, muat datanya
+                tasks = JSON.parse(saved);
+                tasks = ["Mengerjakan latihan 1", "Membuat laporan"];
+            }
+        }
+
+        // Function to Save tasks
+        function saveTasks() {
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        // Function to Display tasks
+        function displayTasks() {
+            let html = "";
+            for (let i = 0; i < tasks.length; i++) {
+                // 2. Perbaikan typo (menghapus titik koma di dalam string tag html)
+                html += "<li>" + tasks[i]
+            }
+            document.getElementById("list").innerHTML = html;
+        }
+
+        // Function to Add a task
+        function addTask() {
+            let taskInput = document.getElementById("task");
+            let text = taskInput.value.trim(); // 3. Tambahkan trim() agar input spasi kosong tidak lolos
+            
+            if (text === "") {
+                alert("Tugas tidak boleh kosong!"); // Beri peringatan kecil (opsional)
+                return;
+            }
+            
+            tasks.push(text);
+            taskInput.value = ""; // Kosongkan input setelah menambah
+            saveTasks();
+            displayTasks();
+        }
+
+        // Load and display tasks when page loads 
+        loadTasks();
+        displayTasks();
+    </script>
 </body>
 
 </html>
