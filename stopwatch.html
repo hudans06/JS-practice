@@ -1,1 +1,55 @@
 <!DOCTYPE html>
+<html>
+<head>
+    <title>stopwatch ft js</title>
+</head>
+
+<body>
+    <h1>STOPWATCH</h1>
+
+    <h2 id="demo">0</h2>
+
+    <button onclick="startCountup()">Start</button>
+    <button onclick="stopCount()">Stop</button>
+    <button onclick="resetCount()">Reset</button>
+
+    
+ <script>
+    let timer;
+    let count = 0;
+    
+    function startCountup() {
+        clearInterval(timer);
+        
+
+        timer = setInterval(function() {
+            count++;
+            myDisplayer(count);
+        }, 1000);
+    }
+
+    
+
+    function stopCount() {
+            clearInterval(timer); // Menghentikan interval tanpa menghapus angka count
+    }
+
+    function resetCount () {
+        clearInterval (timer);
+        count = 0;
+        myDisplayer(count);
+    }
+
+
+    function myDisplayer(text) {
+        let demo = document.getElementById("demo"); 
+        demo.innerHTML = text;
+    }
+</script>
+
+</body>
+
+
+
+
+</html>
