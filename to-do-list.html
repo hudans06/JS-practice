@@ -1,49 +1,50 @@
 <!DOCTYPE html>
-<head>
-    <title> to do list </title>
+<html>
+    <head>
+        <title> to do list </title>
 
-</head>
-<body>
-    <div id="myDIV" class="header">
-        <h2>To Do List</h2>
-        <input type="text" id="task" placeholder="Tulis Tugas... ">
-        <button onclick="addTask()">Tambah</button>
-    </div>
+    </head>
+    <body>
+        <div id="myDIV" class="header">
+            <h2>To Do List</h2>
+            <input type="text" id="task" placeholder="Tulis Tugas... ">
+            <button onclick="addTask()">Tambah</button>
+        </div>
 
-    <ul id="list">
-    </ul>
+        <ul id="list">
+        </ul>
 
-    <script>
-       let tasks = ["Mengerjakan latihan 1", "Membuat laporan"];
-        
+        <script>
+        let tasks = ["Mengerjakan latihan 1", "Membuat laporan"];
+            
 
-        // Function to Display tasks
-        function displayTasks() {
-            let html = "";
-            for (let i = 0; i < tasks.length; i++) {
+            // Function to Display tasks
+            function displayTasks() {
+                let html = "";
+                for (let i = 0; i < tasks.length; i++) {
+                    
+                    html += "<li>" + tasks[i] + "</li>";
+                }
+                document.getElementById("list").innerHTML = html;
+            }
+
+            // Function to Add a task
+            function addTask() {
+                let taskInput = document.getElementById("task");
+                let text = taskInput.value.trim(); 
                 
-                html += "<li>" + tasks[i] + "</li>";
-            }
-            document.getElementById("list").innerHTML = html;
-        }
-
-        // Function to Add a task
-        function addTask() {
-            let taskInput = document.getElementById("task");
-            let text = taskInput.value.trim(); 
-            
-            if (text === "") {
-                alert("Tugas tidak boleh kosong!"); 
-                return;
+                if (text === "") {
+                    alert("Tugas tidak boleh kosong!"); 
+                    return;
+                }
+                
+                tasks.push(text);
+                taskInput.value = ""; 
+                displayTasks();
             }
             
-            tasks.push(text);
-            taskInput.value = ""; 
             displayTasks();
-        }
-        
-        displayTasks();
-    </script>
-</body>
+        </script>
+    </body>
 
 </html>
